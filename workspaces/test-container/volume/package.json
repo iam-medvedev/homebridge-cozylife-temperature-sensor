@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "homebridge": "1.7.0",
+    "homebridge-cozylife-temperature-sensor": "file:../../homebridge-cozylife-temperature-sensor"
+  }
+}

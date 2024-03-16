@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "workspaces": [
+    "./workspaces/*"
+  ],
+  "scripts": {
+    "build": "yarn workspace homebridge-cozylife-temperature-sensor build",
+    "test": "yarn workspace homebridge-cozylife-temperature-sensor test",
+    "generate-api": "yarn workspace homebridge-cozylife-temperature-sensor generate-api",
+    "test-container": "yarn workspace test-container start"
+  },
+  "volta": {
+    "node": "20.11.1",
+    "yarn": "1.22.19"
+  },
+  "packageManager": "yarn@4.1.1"
+}

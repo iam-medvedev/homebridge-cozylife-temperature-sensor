@@ -1,0 +1,377 @@
+openapi: 3.0.0
+
+info:
+  title: CozyLife API
+  description: Created using reverse engineering
+  version: 0.0.0
+
+servers:
+  - url: https://api-us.doiting.com/api
+    description: Base API URL
+
+paths:
+  /app/user/login:
+    post:
+      summary: User Login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                platform:
+                  type: string
+                package_name:
+                  type: string
+                user_term_version:
+                  type: string
+                package_version:
+                  type: string
+                user_privacy_version:
+                  type: string
+                lang:
+                  type: string
+                country_number_code:
+                  type: string
+                lat:
+                  type: string
+                lng:
+                  type: string
+                imei:
+                  type: string
+                passwd:
+                  type: string
+                mail:
+                  type: string
+              required:
+                - platform
+                - package_name
+                - user_term_version
+                - package_version
+                - user_privacy_version
+                - lang
+                - country_number_code
+                - lat
+                - lng
+                - imei
+                - passwd
+                - mail
+      responses:
+        "200":
+          description: User logged in successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserData"
+  /v2/app/device_with_group/list:
+    get:
+      summary: Get Device List with Group
+      parameters:
+        - in: query
+          name: count
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 10000
+          required: true
+          description: Number of devices to retrieve
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+          required: true
+          description: Page number
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+          description: User token for authentication
+      responses:
+        "200":
+          description: Device list retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceList"
+  /app/device/info:
+    get:
+      summary: Get Device Info by ID
+      parameters:
+        - in: query
+          name: device_id
+          schema:
+            type: string
+          required: true
+          description: ID of the device
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+          description: User token for authentication
+      responses:
+        "200":
+          description: Device info retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceInfo"
+  /app/v2/device/states:
+    get:
+      summary: Get States for Devices
+      parameters:
+        - in: query
+          name: device_ids[]
+          schema:
+            type: array
+            items:
+              type: string
+          required: true
+          description: IDs of the devices
+        - in: query
+          name: token
+          schema:
+            type: string
+          required: true
+          description: User token for authentication
+      responses:
+        "200":
+          description: Device states retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeviceStatesResponse"
+
+components:
+  schemas:
+    UserData:
+      type: object
+      properties:
+        ret:
+          type: string
+        desc:
+          type: string
+        info:
+          type: object
+          properties:
+            uid:
+              type: number
+            token:
+              type: string
+            tcp_host:
+              type: string
+            tcp_port:
+              type: number
+            nickname:
+              type: string
+            avatar:
+              type: string
+            email:
+              type: string
+            is_update:
+              type: number
+            is_third_party:
+              type: number
+            third_party:
+              type: array
+              items:
+                type: number
+            phone:
+              type: string
+            country_number_code:
+              type: string
+    DeviceList:
+      type: object
+      properties:
+        ret:
+          type: string
+        desc:
+          type: string
+        info:
+          type: object
+          properties:
+            device_bind:
+              type: object
+              properties:
+                count:
+                  type: integer
+                list:
+                  type: array
+                  items:
+                    $ref: "#/components/schemas/Device"
+    Device:
+      type: object
+      properties:
+        device_product_id:
+          type: string
+        mpaas_url:
+          type: string
+        device_model_icon:
+          type: string
+        device_name:
+          type: string
+        device_id:
+          type: string
+        room_id:
+          type: integer
+        is_online:
+          type: integer
+        is_online_update_time:
+          type: integer
+        additional_detail:
+          type: string
+        tcp_server_id:
+          type: integer
+        ip:
+          type: string
+        port:
+          type: integer
+        ws_port:
+          type: integer
+        room_name:
+          type: string
+        network:
+          type: string
+        firmware_chip:
+          type: string
+        device_key:
+          type: string
+        device_model_name:
+          type: string
+        mpass_url:
+          type: string
+        firmware_version:
+          type: string
+        bind_timestamp:
+          type: integer
+    DeviceInfo:
+      type: object
+      properties:
+        ret:
+          type: string
+        desc:
+          type: string
+        info:
+          type: object
+          properties:
+            device_id:
+              type: string
+            device_key:
+              type: string
+            is_online:
+              type: integer
+            device_name:
+              type: string
+            firmware_version:
+              type: string
+            bind_timestamp:
+              type: integer
+            mpass_url:
+              type: string
+            device_product_id:
+              type: string
+            device_model_icon:
+              type: string
+            network:
+              type: string
+            dpid:
+              type: array
+              items:
+                type: integer
+            mpass:
+              type: array
+              items:
+                type: object
+                properties:
+                  mpass_name:
+                    type: string
+                  mpass_url:
+                    type: string
+                  icon:
+                    type: string
+            device_model_name:
+              type: string
+    DeviceState:
+      type: object
+      properties:
+        4:
+          description: Humidity (%)
+          type: string
+        8:
+          description: Temperature (°)
+          type: string
+        9:
+          description: Battery
+          type: string
+        12:
+          type: string
+        13:
+          type: string
+        14:
+          description: Humidity alarm (min)
+          type: string
+        20:
+          description: Temperature upper level (°)
+          type: string
+        21:
+          description: Temperature lower level (°)
+          type: string
+        22:
+          description: Humidity upper level (%)
+          type: string
+        23:
+          description: Humidity lower level (%)
+          type: string
+        24:
+          description: Humidity sensitivity (°)
+          type: string
+        25:
+          description: Temperature sensitivity (°)
+          type: string
+        26:
+          description: Temperature scale
+          $ref: "#/components/schemas/TemperatureScale"
+        id:
+          type: string
+        key:
+          type: string
+        pid:
+          type: string
+        type:
+          type: string
+        hp:
+          type: string
+        d_m_id:
+          type: string
+        c:
+          type: string
+        online:
+          type: boolean
+    DeviceStatesResponse:
+      type: object
+      properties:
+        ret:
+          type: string
+        desc:
+          type: string
+        info:
+          type: array
+          items:
+            type: object
+            properties:
+              device_id:
+                type: string
+              state:
+                $ref: "#/components/schemas/DeviceState"
+    TemperatureScale:
+      type: integer
+      format: int32
+      enum:
+        - 0
+        - 1
+      x-enum-varnames:
+        - Celsium
+        - Fahrenheit

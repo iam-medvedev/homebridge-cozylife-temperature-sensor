@@ -1,0 +1,20 @@
+{
+  "pluginAlias": "CozyLifeTemperatureSensor",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "email": {
+        "title": "CozyLife User Email",
+        "type": "string",
+        "required": true
+      },
+      "password": {
+        "title": "CozyLife User Password",
+        "type": "string",
+        "required": true
+      }
+    }
+  }
+}

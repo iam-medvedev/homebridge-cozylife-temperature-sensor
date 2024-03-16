@@ -1,0 +1,7 @@
+{
+  "name": "test-container",
+  "private": true,
+  "scripts": {
+    "start": "docker-compose up"
+  }
+}
