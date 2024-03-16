@@ -13,7 +13,7 @@
   "scripts": {
     "build": "rm -rf ./dist && esbuild ./src/index.ts --bundle --outfile=./dist/index.js --minify --format=cjs",
     "generate-api": "openapi-typescript ./src/client/schema.yaml -o ./src/client/schema.d.ts",
-    "release": "semantic-release",
+    "release": "cp -fr ../../README.md ./README.md && semantic-release",
     "test": "vitest"
   },
   "engines": {
