@@ -12,8 +12,9 @@
   ],
   "scripts": {
     "build": "rm -rf ./dist && esbuild ./src/index.ts --bundle --outfile=./dist/index.js --minify --format=cjs",
-    "test": "vitest",
-    "generate-api": "openapi-typescript ./src/client/schema.yaml -o ./src/client/schema.d.ts"
+    "generate-api": "openapi-typescript ./src/client/schema.yaml -o ./src/client/schema.d.ts",
+    "release": "semantic-release",
+    "test": "vitest"
   },
   "engines": {
     "homebridge": "^1.7.0"
@@ -22,12 +23,18 @@
     "openapi-fetch": "^0.9.3"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^11.1.0",
+    "@semantic-release/github": "^10.0.2",
+    "@semantic-release/npm": "^12.0.0",
+    "@semantic-release/release-notes-generator": "^12.1.0",
     "@types/node": "^20.11.27",
     "dotenv": "^16.4.5",
     "esbuild": "^0.20.1",
     "homebridge": "^1.7.0",
     "openapi-typescript": "^6.7.5",
     "openapi-typescript-helpers": "^0.0.7",
+    "semantic-release": "^23.0.4",
     "tsx": "^4.7.1",
     "typescript": "^5.4.2",
     "vitest": "^1.4.0"

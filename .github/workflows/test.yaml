@@ -1,0 +1,28 @@
+name: test
+
+on: push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1
+          cache: "yarn"
+
+      - name: Install dependencies
+        run: yarn add --cached
+
+      - name: Test
+        env:
+          USER_EMAIL: ${{ secrets.TEST_USER_EMAIL }}
+          USER_PASSWORD: ${{ secrets.TEST_USER_PASSWORD }}
+        run: yarn test

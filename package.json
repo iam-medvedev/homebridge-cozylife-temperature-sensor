@@ -5,9 +5,10 @@
   ],
   "scripts": {
     "build": "yarn workspace homebridge-cozylife-temperature-sensor build",
-    "test": "yarn workspace homebridge-cozylife-temperature-sensor test",
     "generate-api": "yarn workspace homebridge-cozylife-temperature-sensor generate-api",
-    "test-container": "yarn workspace test-container start"
+    "release": "yarn workspace homebridge-cozylife-temperature-sensor release",
+    "test-container": "yarn workspace test-container start",
+    "test": "yarn workspace homebridge-cozylife-temperature-sensor test"
   },
   "volta": {
     "node": "20.11.1",
