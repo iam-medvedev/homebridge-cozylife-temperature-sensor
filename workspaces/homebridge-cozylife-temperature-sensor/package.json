@@ -4,7 +4,6 @@
   "description": "CozyLife temperature sensor plugin for Homebridge",
   "author": "Ilya Medvedev <ilya@medvedev.im>",
   "version": "1.0.0",
-  "private": true,
   "license": "UNLICENSED",
   "main": "dist/index.js",
   "keywords": [
