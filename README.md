@@ -6,7 +6,7 @@ This is a [CozyLife](http://cozylife.app) plugin for [Homebridge](https://homebr
 
 Currently, it only works with the WiFi version of the [Temperature & Humidity sensor](https://www.aliexpress.com/item/1005006398885795.html) (ID: `s1AxFq`).
 
-<img src="./readme-assets/1.jpg" width="200" />
+<img src="https://github.com/iam-medvedev/homebridge-cozylife-temperature-sensor/blob/main/readme-assets/1.jpg?raw=true" width="200" />
 
 ## API
 
