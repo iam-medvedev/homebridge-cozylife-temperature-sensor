@@ -2,9 +2,12 @@
   "name": "homebridge-cozylife-temperature-sensor",
   "displayName": "CozyLife temperature sensor",
   "description": "CozyLife temperature sensor plugin for Homebridge",
+  "repository": "https://github.com/iam-medvedev/homebridge-cozylife-temperature-sensor.git",
+  "homepage": "https://github.com/iam-medvedev/homebridge-cozylife-temperature-sensor#readme",
+  "bugs": "https://github.com/iam-medvedev/homebridge-cozylife-temperature-sensor/issues",
   "author": "Ilya Medvedev <ilya@medvedev.im>",
   "version": "1.0.0",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "dist/index.js",
   "keywords": [
     "homebridge-plugin"
@@ -12,7 +15,9 @@
   "scripts": {
     "build": "rm -rf ./dist && esbuild ./src/index.ts --bundle --outfile=./dist/index.js --minify --format=cjs",
     "generate-api": "openapi-typescript ./src/client/schema.yaml -o ./src/client/schema.d.ts",
-    "release": "cp -fr ../../README.md ./README.md && semantic-release",
+    "copy-readme": "cp -fr ../../README.md ./README.md",
+    "copy-license": "cp -fr ../../LICENSE ./LICENSE",
+    "release": "yarn copy-readme && yarn copy-license && semantic-release",
     "test": "vitest"
   },
   "engines": {
