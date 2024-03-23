@@ -18,9 +18,8 @@ export type PlatformAccessory =
   GenericPlatformAccessory<PlatformAccessoryContext>;
 
 export class CozyLifePlatform implements DynamicPlatformPlugin {
-  public readonly Service: typeof Service = this.api.hap.Service;
-  public readonly Characteristic: typeof Characteristic =
-    this.api.hap.Characteristic;
+  public readonly Service: typeof Service;
+  public readonly Characteristic: typeof Characteristic;
   public readonly accessories: PlatformAccessory[] = [];
 
   constructor(
@@ -29,6 +28,8 @@ export class CozyLifePlatform implements DynamicPlatformPlugin {
     public readonly api: API
   ) {
     this.log.debug("Finished initializing platform:", this.config.name);
+    this.Service = this.api.hap.Service;
+    this.Characteristic = this.api.hap.Characteristic;
 
     // Start devices discovering
     this.api.on("didFinishLaunching", () => {

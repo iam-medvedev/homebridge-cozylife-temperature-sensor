@@ -24,7 +24,6 @@
     "homebridge": "^1.7.0"
   },
   "dependencies": {
-    "homebridge": "^1.7.0",
     "openapi-fetch": "^0.9.3"
   },
   "devDependencies": {
